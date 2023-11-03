@@ -1,13 +1,13 @@
 import './App.css';
-import { HomePage } from './pages/HomePage';
+import { MainRoutes } from './components/MainRoutes';
+
 
 
 
 function App() {
   return (
     <div>
-      <HomePage/>
-      
+    <MainRoutes/>
     </div>
   );
 }

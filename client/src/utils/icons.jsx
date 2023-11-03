@@ -10,6 +10,6 @@ import {
   IoLogoGithub as Github
 } from 'react-icons/io5';
 import {BsDot as dot } from 'react-icons/bs'
-import { AiOutlineLike as Like, AiOutlineDislike as Dislike } from 'react-icons/ai';
+import { AiOutlineLike as Like, AiOutlineDislike as Dislike,AiFillCloseCircle as Close, } from 'react-icons/ai';
 
-export { Info, CaretDown, Play, Search, Notifications, Add, Down, Like, Dislike, Linkedin, Twitter, Github,dot };
+export { Info, CaretDown, Play, Search, Notifications, Add, Down, Like, Dislike, Linkedin, Twitter, Github,dot,Close };

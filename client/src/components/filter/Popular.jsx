@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Crausel from './Crausel';
 import "../../Styles/popular.css"
 import '@fontsource/poppins'; 
-const api_key = process.env.apiKey
+
 
 
 const Popular = () => {
@@ -23,7 +23,7 @@ const Popular = () => {
         while (page <= totalPages && allMovies.length < maxMovies) {
           const response = await axios.get('https://api.themoviedb.org/3/movie/popular', {
             params: {
-              api_key: api_key,
+              api_key: process.env.apiKey,
               page: page
             }
           });
