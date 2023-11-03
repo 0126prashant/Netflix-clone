@@ -1,8 +1,8 @@
 import axios from "axios"
-import { POST_REGISTER_REQUEST } from "../actionTypes/actionTypes";
+import { POST_LOGIN_FAILURE, POST_LOGIN_SUCCESS, POST_REGISTER_REQUEST } from "../actionTypes/actionTypes";
 
 export const register =(data)=> (dispatch) => {
-    console.log(data)
+    // console.log(data)
     
   dispatch({type:POST_REGISTER_REQUEST})
 
@@ -10,10 +10,21 @@ export const register =(data)=> (dispatch) => {
   
 };
 
-export const login=(data)=>(dispatch)=>{
-  // console.log(data)
-    
-  dispatch({type:POST_REGISTER_REQUEST})
+export const loginuser = (data) => (dispatch) => {
+  // dispatch({ type: POST_REGISTER_REQUEST });
 
-  return axios.post("http://localhost:8080/users/login",data)
-}
+  return axios.post("http://localhost:8080/users/login", data)
+    .then((response) => {
+      const token = response.data.token;
+      const username = response.data.username;
+
+      // Save the token to localStorage
+      localStorage.setItem('token', token);
+      dispatch({ type: POST_LOGIN_SUCCESS,payload:username });
+      return response;
+    })
+    .catch((error) => {
+      dispatch({ type: POST_LOGIN_FAILURE, payload: error });
+      throw error;
+    });
+};

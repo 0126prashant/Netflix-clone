@@ -34,8 +34,8 @@ export const Register = () => {
         // console.log(e.target)
         dispatch(register(obj)).then((res)=>{
           if(res.type == POST_REGISTER_SUCCESS){
-            // navigate("/login");
-            console.log("yes")
+            alert("done")
+            navigate("users/login");
           }
           
         })
@@ -46,7 +46,7 @@ export const Register = () => {
     <>
     <img src="https://assets.nflxext.com/ffe/siteui/vlv3/ab180a27-b661-44d7-a6d9-940cb32f2f4a/7fb62e44-31fd-4e1f-b6ad-0b5c8c2a20ef/IN-en-20231009-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="backImage"/>
     <div className='main-container'>
-        <h2 className='regiter_h2'>Sign In</h2>
+        <h2 className='regiter_h2'>Register</h2>
         <br/>
         <br/>
 

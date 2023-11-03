@@ -3,52 +3,54 @@ const { UserModel } = require("../models/user.model")
 const userRouter = express.Router()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-
+require ("dotenv").config();
 
 // for register
 userRouter.post("/register",async( req,res)=>{
     const {email,password} = req.body
-    const userExist = await UserModel.find({email})
+    const userExist = await UserModel.findOne({email})
     try {
-        if(userExist.length){
-            res.status(400).send({error : "user Already prresent"})
+        if(userExist){
+            res.status(400).send({error : "user Already present"})
         }
         if(checkPass(password)){
-            const hashPass = bcrypt.hashSync(password,7)
+            const hashPass = bcrypt.hashSync(password,10)
             const user = new UserModel({...req.body,password:hashPass})
             await user.save()
-            res.status(200).send({msg:"The new user has been registered",registeredUser:user})
+            return res.status(200).send({msg:"The new user has been registered",registeredUser:user})
         }
         res.status(400).send({error : "Check the password"}) 
+        
     } catch (error) {
         res.status(400).send({error:error.message})
     }
    
 })
 // for login
-
 userRouter.post("/login",async(req,res)=>{
-    const {email,password}= req.body
-    const userExist = await UserModel.findOne({email})
     try {
-        if(userExist){
-            bcrypt.compare(password,userExist.password,(err,result)=>{
-                if(err){
-                    res.status(400).send({err:err.message})
-                }
-                var token = jwt.sign({ course: "MERN" }, "netflix",{
-                    expiresIn: 840
-                });
-                if(token){
-                    res.status(200).send({msg:"Login successful!","token":token})
-                }
-            })
+        const {email,password}=req.body;
+        const existinguser= await UserModel.findOne({email});
+        if (!existinguser){
+           
+            return res.status(404).json({msg:"user not found,please create account"})
         }
-    } catch (error) {
-        res.status(400).send({error:error.message})
-    }
+        bcrypt.compare(password,existinguser.password,async(err,result)=>{
+            if (result){
+                const token=jwt.sign({userID:existinguser._id,username:existinguser.name},process.env.secretKey);
+                return res.status(200).json({msg:"login successfully",token:token,username:existinguser.name})
 
+            }
+            else{
+                return res.status(400).json({error:"Wrong credientials"})
+            }
+        })
+    
+    } catch (error) {
+     res.status(500).json({error:error.message})
+    }
 })
+
 
 module.exports = {
     userRouter

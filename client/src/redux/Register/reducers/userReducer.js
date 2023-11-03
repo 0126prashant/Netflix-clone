@@ -1,9 +1,13 @@
-import { POST_LOGIN_SUCCESS, POST_REGISTER_ERROR, POST_REGISTER_REQUEST, POST_REGISTER_SUCCESS } from "../actionTypes/actionTypes"
+import { POST_LOGIN_FAILURE, POST_LOGIN_SUCCESS, POST_REGISTER_ERROR, POST_REGISTER_REQUEST, POST_REGISTER_SUCCESS } from "../actionTypes/actionTypes"
+
+// let token = localStorage.getItem("token")
 
 const initialstate={
+
     isLoading: false,
     isError: false,
     isAuth:false,
+    userName:"",
     Register:[],
     Login:[]
   }
@@ -20,8 +24,11 @@ const reducer=(state=initialstate,action)=>{
         return {...state,Register:[...state.Register,action.payload],isLoading:false}
     }
     case POST_LOGIN_SUCCESS:{
-        return {...state,Login:[...state.Login,action.payload],isLoading:false,isAuth:true}
+        return {...state,Login:[...state.Login,action.payload],isLoading:false,isAuth:true,userName:action.payload}
     }
+    // case POST_LOGIN_FAILURE:{
+    //     return {...state,Login:[...state.Login,action.payload],isLoading:false,isAuth:false}
+    // }
     default:{
         return {...state}
     }

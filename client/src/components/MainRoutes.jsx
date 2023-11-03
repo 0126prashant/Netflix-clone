@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from './Login';
 import { Register } from './Register';
 import { HomePage } from '../pages/HomePage';
+import { List } from '../pages/List';
+
 
 export const MainRoutes = () => {
   return (
@@ -11,6 +13,7 @@ export const MainRoutes = () => {
         <Route path="/users/login" element={<Login />} />
         <Route path="/users/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/list/" element={<List/>}/>
     </Routes>
     </>
   )

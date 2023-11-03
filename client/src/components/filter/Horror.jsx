@@ -12,7 +12,7 @@ export const Horror = () => {
   
       axios.get(`https://api.themoviedb.org/3/discover/movie`, {
         params: {
-          api_key: process.env.apiKey,
+          api_key:process.env.apiKey,
           with_genres: genreId,
         }
       })

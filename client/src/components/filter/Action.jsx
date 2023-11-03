@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Crausel from './Crausel';
-// const apiKey = '2f91df7c599cd01601b84f9f8b5c20e0'; 
 
 export const Action = () => {
   const [movies, setMovies] = useState([]);

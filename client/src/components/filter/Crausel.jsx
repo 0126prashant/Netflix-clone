@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../../Styles/crausel.css"
 import Modal from 'react-modal';
-import { Add, Dislike, Down, Like, Play } from '../../utils/icons';
+import { Add, Close, Dislike, Down, Like, Play } from '../../utils/icons';
+import { submitFormData } from '../../redux/list/listAction';
+import { useDispatch } from 'react-redux';
 
 
 
 const Crausel = ({movies}) => {
   const [genres, setGenres] = useState({});
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const dispatch = useDispatch()
 
 // Rendering ----------Gener---------------------------------------> 
 useEffect(() => {
@@ -31,7 +34,7 @@ useEffect(() => {
 
   fetchGenres();
 }, []);
-// console.log(genres,"gener")
+// console.log(movies,"gener")
 // Rendering ----------Gener---------------------------------------> 
 // The model options for closing and opening -------------------------->
 const closeModal = () => {
@@ -43,6 +46,10 @@ const openModal = (movie) => {
 }
 // The model options for closing and opening -------------------------->
 
+const handleClickAdd = (data)=>{
+  // console.log(data);
+  dispatch(submitFormData(data))
+}
   return (
     <div className="carousel">
       {movies.map(movie => (
@@ -55,7 +62,7 @@ const openModal = (movie) => {
           <div className='hidden'>
           <div className='icons'>
           <Play className='icn brdr'/>
-          <Add className='icn brdr'/>
+          <Add onClick={()=>handleClickAdd({"id":movie.id,"img_url":`https://image.tmdb.org/t/p/w500${movie.poster_path}`,"title":movie.title})} className='icn brdr'/>
           <Like className='icn brdr'/>
           <Dislike className='icn brdr'/>
           <Down className='icn brdr' onClick={() => openModal(movie)}/>
@@ -73,11 +80,11 @@ const openModal = (movie) => {
         isOpen={selectedMovie !== null}
         onRequestClose={closeModal}
         contentLabel="Movie Details"
-        className="modal"
+        className="custom-modal"
       >
         {selectedMovie && (
           <div>
-            <h2>{selectedMovie.original_title}</h2>
+            {/* <h2>{selectedMovie.original_title}</h2> */}
             <img
               src={`https://image.tmdb.org/t/p/original${selectedMovie.poster_path}`}
               alt={selectedMovie.original_title}
@@ -85,8 +92,10 @@ const openModal = (movie) => {
             <p>{selectedMovie.overview}</p>
           </div>
         )}
-        <button onClick={closeModal} style={{color:"red"}}>Close</button>
+        <button onClick={closeModal} className='close-button'><Close/></button>
       </Modal>
+
+
     </div>
     
   );
