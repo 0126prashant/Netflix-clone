@@ -5,7 +5,7 @@ const listRouter = express.Router()
 require ("dotenv").config();
 
 
-// listRouter.use(auth)
+listRouter.use(auth)
 listRouter.post("/add",async(req,res)=>{
   const {title,overview,img_url} = req.body
   try {
@@ -21,12 +21,30 @@ listRouter.post("/add",async(req,res)=>{
 listRouter.get("/",async(req,res)=>{
 
     try {
-        const post = await PostModel.find({creatorId:req.userID})
-        // const post = await ListModel.find({})
+        const post = await ListModel.find({creatorId:req.userID})
         res.status(200).send(post)
     } catch (error) {
         res.status(400).send({error:error.message})
     }
+
+})
+// delete posts from list Page
+
+listRouter.delete("/:id",async(req,res)=>{
+
+  try {
+    const deletedItem = await ListModel.findOneAndDelete({
+      _id: req.params.id,
+    });
+
+    if (!deletedItem) {
+      return res.status(404).send({ error: "Item not found" });
+    }
+    res.status(200).send(deletedItem);
+    
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 
 })
 

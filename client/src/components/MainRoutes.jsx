@@ -4,6 +4,7 @@ import { Login } from './Login';
 import { Register } from './Register';
 import { HomePage } from '../pages/HomePage';
 import { List } from '../pages/List';
+import { Search } from './Search';
 
 
 export const MainRoutes = () => {
@@ -14,6 +15,7 @@ export const MainRoutes = () => {
         <Route path="/users/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/list/" element={<List/>}/>
+        <Route path="/search" element={<Search/>}/>
     </Routes>
     </>
   )

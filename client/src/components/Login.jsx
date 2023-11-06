@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import "../Styles/login.css"
@@ -20,35 +20,18 @@ export const Login = () => {
       await dispatch(loginuser(dataObj));
       const token = localStorage.getItem('token');
       if (token) {
+        toast({
+          title: "Login Successful",
+          description: "Thank you for Login!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
         navigate("/");
       }
     } catch (error) {
       console.error(error, "error");
-    }
-
-
-    
-    // const response = await fetch('http://localhost:8080/users/login', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
-    
-    //   const data = await response.json();
-    // console.log(data,"login data")
-    //   if (data.token) {
-    //     localStorage.setItem('token', data.token);
-    //     alert("Login sucess")
-    //    navigate("/")
-    //   }
-    //   else {
-    //     alert("Login failed")
-    //     console.error(data.msg);
-    //   }
-
-    
+    }    
   };
 
     return (
@@ -82,6 +65,7 @@ export const Login = () => {
                 />
                 <button className='btn' type="submit">Login</button>
             </form>
+            <div className='register-para'><p>Click Here to <Link to="/users/register"><span>Register </span></Link></p></div>
         </div>
         </>
     );

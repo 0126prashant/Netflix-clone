@@ -39,3 +39,41 @@
     color: #fff;
     /* border: 2px solid red; */
 }
+.navbar-main > img{
+    /* border: 2px solid red; */
+    width: 100px;
+    height: 40px;
+}
+
+/* Medium screens */
+@media screen and (max-width: 750px) {
+    .nav_icons {
+        left: 1rem;
+        
+    }
+    .navbar-main  img{
+        /* border: 2px solid red; */
+        width: 50px;
+        height: 30px;
+    }
+    
+}
+
+/* Small screens */
+@media screen and (max-width: 450px) {
+    .navbar-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav_icons {
+        position: relative;
+        left: 0;
+        margin-top: 10px;
+    }
+    .navbar-main  img{
+        border: 2px solid red;
+        width: 50px;
+        height: 30px;
+    }
+}

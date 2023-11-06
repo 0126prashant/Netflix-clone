@@ -19,7 +19,7 @@ useEffect(() => {
     try {
       const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list', {
         params: {
-          api_key: process.env.apiKey 
+          api_key: "2f91df7c599cd01601b84f9f8b5c20e0" 
         }
       });
       const genreData = response.data.genres.reduce((acc, genre) => {

@@ -19,7 +19,10 @@ userRouter.post("/register",async( req,res)=>{
             await user.save()
             return res.status(200).send({msg:"The new user has been registered",registeredUser:user})
         }
-        res.status(400).send({error : "Check the password"}) 
+        else{
+
+            res.status(400).send({error : "Check the password"}) 
+        }
         
     } catch (error) {
         res.status(400).send({error:error.message})

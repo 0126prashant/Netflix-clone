@@ -10,7 +10,7 @@ export const Trending = () => {
     useEffect(() => {  
       axios.get(`https://api.themoviedb.org/3/trending/movie/week`, {
         params: {
-          api_key:process.env.apiKey,
+          api_key:"2f91df7c599cd01601b84f9f8b5c20e0",
         }
       })
       .then(response => {

@@ -1,12 +1,12 @@
 import { POST_LOGIN_FAILURE, POST_LOGIN_SUCCESS, POST_REGISTER_ERROR, POST_REGISTER_REQUEST, POST_REGISTER_SUCCESS } from "../actionTypes/actionTypes"
 
-// let token = localStorage.getItem("token")
+let token = localStorage.getItem("token")
 
 const initialstate={
 
     isLoading: false,
     isError: false,
-    isAuth:false,
+    isAuth:token?true:false,
     userName:"",
     Register:[],
     Login:[]
