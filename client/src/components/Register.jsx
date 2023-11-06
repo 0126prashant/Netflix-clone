@@ -34,7 +34,13 @@ export const Register = () => {
         // console.log(e.target)
         dispatch(register(obj)).then((res)=>{
           if(res.type == POST_REGISTER_SUCCESS){
-            alert("done")
+            toast({
+              title: "Registration Successful",
+              description: "Thank you for registering! You can now log in with your new account.",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
             navigate("users/login");
           }
           
