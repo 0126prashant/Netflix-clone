@@ -30,6 +30,13 @@ export const Login = () => {
         navigate("/");
       }
     } catch (error) {
+      toast({
+        title: "Login Successful",
+        description: "Thank you for Login!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
       console.error(error, "error");
     }    
   };
