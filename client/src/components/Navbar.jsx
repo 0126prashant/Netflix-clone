@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import "../Styles/navbar.css"
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { Logout, Searchic } from '../utils/icons';
+import { useToast } from '@chakra-ui/react';
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const {userName,isAuth,Login} =  useSelector((store)=>store.RegisterReducer)
   const navigate = useNavigate()
+  const UserName = localStorage.getItem("UserName")
+  const toast = useToast();
   // console.log(isAuth ? "true":"false" ,"is auth in nav")
   // console.log(userName,"userName  in nav") 
   // console.log(Login,"Login  in nav") 
@@ -38,7 +42,16 @@ export const Navbar = () => {
     navigate("/search")
   };
   // for search--------------------->
- 
+ const clearLcstrg=()=>{
+  toast({
+    title: 'Logged out successfully',
+    status: 'success',
+    duration: 3000,
+    isClosable: true,
+  });
+  localStorage.clear()
+  navigate("/users/login")
+ }
 
   return (
     <nav className={`nav ${scrolled ? 'black' : ''}`}>
@@ -49,7 +62,7 @@ export const Navbar = () => {
       <h2>News & Popular</h2>
       <h2><Link to="/list/">My List</Link> </h2>
     <div className='nav_icons'>
-    <div style={{marginTop:"20px"}}>
+    <div className='search-box' style={{marginTop:"20px"}}>
                 <input
                 style={{color:"black"}}
                   type="text"
@@ -57,9 +70,10 @@ export const Navbar = () => {
                   onChange={handleSearchInputChange}
                   placeholder="Search..."
                 />
-                <button onClick={handleSearchSubmit}>Search</button>
+                <button onClick={handleSearchSubmit}><Searchic/></button>
               </div>
-      <div>{isAuth? `Hey ${userName}` : <Link to="/users/login"><button >Login</button></Link>} </div>
+      <div className='name'>{isAuth? `Hey ${UserName}` : <Link to="/users/login"><button >Login</button></Link>} </div>
+      <div className='name' onClick={clearLcstrg}><Logout/></div>
     </div>
     </div>
 

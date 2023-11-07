@@ -5,10 +5,11 @@ import Modal from 'react-modal';
 import { Add, Close, Dislike, Down, Like, Play } from '../../utils/icons';
 import { submitFormData } from '../../redux/list/listAction';
 import { useDispatch } from 'react-redux';
-
+import { useToast } from '@chakra-ui/react';
 
 
 const Crausel = ({movies}) => {
+  const toast = useToast();
   const [genres, setGenres] = useState({});
   const [selectedMovie, setSelectedMovie] = useState(null);
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ useEffect(() => {
     try {
       const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list', {
         params: {
-          api_key: "2f91df7c599cd01601b84f9f8b5c20e0" 
+          api_key: `${process.env.apiKey}` 
         }
       });
       const genreData = response.data.genres.reduce((acc, genre) => {
@@ -48,6 +49,13 @@ const openModal = (movie) => {
 
 const handleClickAdd = (data)=>{
   // console.log(data);
+  toast({
+    title: "Movie Added",
+    description: "Movie has been added to your list!",
+    info: "success",
+    duration: 5000,
+    isClosable: true,
+  });
   dispatch(submitFormData(data))
 }
   return (

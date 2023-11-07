@@ -18,8 +18,8 @@ export const loginuser = (data) => (dispatch) => {
       const token = response.data.token;
       const username = response.data.username;
 
-      // Save the token to localStorage
       localStorage.setItem('token', token);
+      localStorage.setItem('UserName', username);
       dispatch({ type: POST_LOGIN_SUCCESS,payload:username });
       return response;
     })
