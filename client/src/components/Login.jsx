@@ -6,12 +6,12 @@ import "../Styles/login.css"
 import { loginuser } from '../redux/Register/actions/userActions';
 
 export const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("Guest@gmail.com");
+    const [password, setPassword] = useState("Guest@123");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const toast = useToast();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,9 +31,9 @@ export const Login = () => {
       }
     } catch (error) {
       toast({
-        title: "Login Successful",
-        description: "Thank you for Login!",
-        status: "success",
+        title: "Login Failed",
+        description: "Wrong Credientials!",
+        status: "failed",
         duration: 5000,
         isClosable: true,
       });

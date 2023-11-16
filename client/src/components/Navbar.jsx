@@ -58,13 +58,13 @@ export const Navbar = () => {
     <div className='navbar-main'>
     <Link to="/"><img  src='https://nextflix-azure.vercel.app/_next/image?url=%2Fassets%2Flogo.png&w=96&q=75' alt='logo'/></Link>
       <h2>TV Shows</h2>
-      <h2>Movies</h2>
+      <h2><Link to="/movies">Movies</Link></h2>
       <h2>News & Popular</h2>
       <h2><Link to="/list/">My List</Link> </h2>
     <div className='nav_icons'>
     <div className='search-box' style={{marginTop:"20px"}}>
                 <input
-                style={{color:"black"}}
+                style={{color:"white"}}
                   type="text"
                   value={searchQuery}
                   onChange={handleSearchInputChange}
@@ -72,7 +72,7 @@ export const Navbar = () => {
                 />
                 <button onClick={handleSearchSubmit}><Searchic/></button>
               </div>
-      <div className='name'>{isAuth? `Hey ${UserName}` : <Link to="/users/login"><button >Login</button></Link>} </div>
+      <div className='name mob-hidden'>{isAuth? `Hey ${UserName}` : <Link to="/users/login"><button >Login</button></Link>} </div>
       <div className='name' onClick={clearLcstrg}><Logout/></div>
     </div>
     </div>

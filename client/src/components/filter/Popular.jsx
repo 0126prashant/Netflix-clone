@@ -23,7 +23,7 @@ const Popular = () => {
         while (page <= totalPages && allMovies.length < maxMovies) {
           const response = await axios.get('https://api.themoviedb.org/3/movie/popular', {
             params: {
-              api_key: `${process.env.apiKey}`,
+              api_key: process.env.REACT_APP_API_KEY,
               page: page
             }
           });

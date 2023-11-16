@@ -6,14 +6,14 @@ export const register =(data)=> (dispatch) => {
     
   dispatch({type:POST_REGISTER_REQUEST})
 
-  return axios.post("http://localhost:8080/users/register",data)
+  return axios.post("https://splendid-veil-fox.cyclic.app/users/register",data)
   
 };
 
 export const loginuser = (data) => (dispatch) => {
   // dispatch({ type: POST_REGISTER_REQUEST });
 
-  return axios.post("http://localhost:8080/users/login", data)
+  return axios.post("https://splendid-veil-fox.cyclic.app/users/login", data)
     .then((response) => {
       const token = response.data.token;
       const username = response.data.username;

@@ -10,7 +10,7 @@ export const HomePage = () => {
   const [secondsRemaining, setSecondsRemaining] = useState(10);
   const {isAuth} =  useSelector((store)=>store.RegisterReducer)
 
-  console.log("apikey",process.env.apiKey)
+  // console.log("apikey",process.env.apiKey)
   useEffect(() => {
     const redirectTimer = setInterval(() => {
       setSecondsRemaining(prev => prev - 1);

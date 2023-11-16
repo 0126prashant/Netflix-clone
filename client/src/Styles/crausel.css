@@ -148,3 +148,18 @@
 
 
 
+.youtube-player-crausel{
+  width: 50%;
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    z-index: 10;
+    position: fixed;
+    z-index:8; 
+      position: fixed;
+      top: 100px;
+      left: 400px;
+}
+.youtube-player-crausel > button{
+  background-color: darkorange;
+}
