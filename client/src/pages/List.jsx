@@ -14,7 +14,7 @@ export const List = () => {
   useEffect(() => {
     
   const getData = ()=>{
-    axios.get(`http://localhost:8080/list/`, {
+    axios.get(`https://splendid-veil-fox.cyclic.app/list/`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -38,21 +38,21 @@ export const List = () => {
     setTimeout(()=>{
       setRefersh(false)
     },100)
-      axios.delete(`http://localhost:8080/list/${itemId}`, {
+      axios.delete(`https://splendid-veil-fox.cyclic.app/list/${itemId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
         .then(response => {
           toast({
-            title: "Movie has been Deleted",
+            title: " Deleted",
             description: "Movie has been Deleted!",
-            status: "failed",
+            status: "error",
             duration: 5000,
             isClosable: true,
             style: {
-              background: "red", 
-              color: "white", 
+              background: "black",
+              color: "white",
             },
           });
           

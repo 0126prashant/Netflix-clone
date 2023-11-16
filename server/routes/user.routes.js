@@ -11,21 +11,20 @@ userRouter.post("/register",async( req,res)=>{
     const userExist = await UserModel.findOne({email})
     try {
         if(userExist){
-            res.status(400).send({error : "user Already present"})
+            res.status(400).json({error : "user Already present"})
         }
         if(checkPass(password)){
-            const hashPass = bcrypt.hashSync(password,10)
+            const hashPass = bcrypt.hashSync(password,7)
             const user = new UserModel({...req.body,password:hashPass})
             await user.save()
-            return res.status(200).send({msg:"The new user has been registered",registeredUser:user})
+            return res.status(200).json({msg:"The new user has been registered",registeredUser:user})
         }
         else{
-
-            res.status(400).send({error : "Check the password"}) 
+            res.status(400).json({error : "Check the password"}) 
         }
         
     } catch (error) {
-        res.status(400).send({error:error.message})
+        res.status(400).json({error:error.message})
     }
    
 })

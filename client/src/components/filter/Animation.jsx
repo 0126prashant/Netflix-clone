@@ -12,7 +12,7 @@ export const Animation = () => {
   
       axios.get(`https://api.themoviedb.org/3/discover/movie`, {
         params: {
-          api_key: `${process.env.apiKey}`,
+          api_key: process.env.REACT_APP_API_KEY,
           with_genres: genreId,
         }
       })
