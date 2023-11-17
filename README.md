@@ -47,7 +47,7 @@ Video Playback: Watch trailers with an integrated video player.
 
 
 ## Login Page
-![image](https://ibb.co/44VhwwD)
+[![image](https://ibb.co/44VhwwD)](https://freeimage.host/i/JnfneKG)
 
 ## List Page
 ![image](https://iili.io/JndqS1I.th.png)
